@@ -1,0 +1,196 @@
+# roxigraph
+
+**roxigraph** provides RDF storage and SPARQL 1.1 query capabilities for
+R by wrapping the [Oxigraph](https://github.com/oxigraph/oxigraph) graph
+database library. Built using the [extendr](https://extendr.github.io/)
+framework for high-performance Rust-R bindings. \## Features
+
+- 🚀 **High Performance**: Rust-powered RDF storage with RocksDB backend
+- 💾 **Flexible Storage**: In-memory or persistent on-disk databases
+- 📄 **Multiple Formats**: Turtle, N-Triples, RDF-XML, N-Quads, TriG
+- 🔍 **Full SPARQL 1.1**: Query and Update support
+
+## Installation
+
+You can install roxigraph from GitHub:
+
+``` r
+# install.packages("pak")
+pak::pak("cboettig/roxigraph")
+```
+
+### System Requirements
+
+- **Rust** toolchain (rustc \>= 1.65, cargo)
+- **libclang-dev** (for RocksDB bindings on Linux)
+
+On Ubuntu/Debian:
+
+``` bash
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install libclang
+sudo apt-get install libclang-dev
+```
+
+## Quick Start
+
+``` r
+library(roxigraph)
+
+# Create an in-memory store
+store <- rdf_store()
+
+# Load some RDF data (Turtle format)
+rdf_load(store, '
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ex: <http://example.org/> .
+
+ex:alice foaf:name "Alice" ;
+         foaf:knows ex:bob .
+ex:bob foaf:name "Bob" .
+', format = "turtle")
+
+# Query with SPARQL
+sparql_query(store, "
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  SELECT ?name WHERE { ?person foaf:name ?name }
+  ORDER BY ?name
+")
+#>      name
+#> 1 "Alice"
+#> 2   "Bob"
+
+# Check store size
+rdf_size(store)
+#> [1] 3
+```
+
+## Persistent Storage
+
+For data that should persist across R sessions:
+
+``` r
+# Create a persistent store
+store <- rdf_store("/path/to/my/database")
+
+# Data is automatically persisted to disk
+rdf_load(store, data, format = "turtle")
+```
+
+## SPARQL Update
+
+Modify your data using SPARQL Update:
+
+``` r
+store <- rdf_store()
+
+# Insert data
+sparql_update(store, "
+  INSERT DATA {
+    <http://example.org/alice> <http://xmlns.com/foaf/0.1/name> 'Alice' .
+  }
+")
+
+# Query the inserted data
+sparql_query(store, "SELECT * WHERE { ?s ?p ?o }")
+#>         o                                p                          s
+#> 1 "Alice" <http://xmlns.com/foaf/0.1/name> <http://example.org/alice>
+```
+
+## Serialization
+
+Export your RDF data to various formats:
+
+``` r
+store <- rdf_store()
+rdf_load(store, '<http://ex.org/s> <http://ex.org/p> "hello" .', format = "ntriples")
+
+# Serialize to N-Quads
+cat(rdf_serialize(store, format = "nquads"))
+#> <http://ex.org/s> <http://ex.org/p> "hello" .
+```
+
+## Learn More
+
+- [Package documentation](https://cboettig.github.io/roxigraph/)
+- [Oxigraph](https://github.com/oxigraph/oxigraph) - the underlying Rust
+  library
+- [SPARQL 1.1 specification](https://www.w3.org/TR/sparql11-query/)
+
+## License
+
+MIT © Carl Boettiger
+
+Oxigraph is dual-licensed under MIT/Apache-2.0.
+
+# Package index
+
+## Store Management
+
+Create and manage RDF stores
+
+- [`rdf_store()`](https://cboettig.github.io/roxigraph/reference/rdf_store.md)
+  : Create an RDF Store
+- [`rdf_store_new()`](https://cboettig.github.io/roxigraph/reference/rdf_store_new.md)
+  : Create a new in-memory RDF store
+- [`rdf_store_open()`](https://cboettig.github.io/roxigraph/reference/rdf_store_open.md)
+  : Open or create a persistent RDF store at the given path
+- [`rdf_size()`](https://cboettig.github.io/roxigraph/reference/rdf_size.md)
+  : Get Store Size
+- [`rdf_store_size()`](https://cboettig.github.io/roxigraph/reference/rdf_store_size.md)
+  : Get the number of quads in the store
+
+## Loading Data
+
+Parse and load RDF data
+
+- [`rdf_load()`](https://cboettig.github.io/roxigraph/reference/rdf_load.md)
+  : Load RDF Data
+- [`rdf_load_file()`](https://cboettig.github.io/roxigraph/reference/rdf_load_file.md)
+  : Load RDF from File
+- [`rdf_store_load()`](https://cboettig.github.io/roxigraph/reference/rdf_store_load.md)
+  : Load RDF data into the store
+- [`rdf_store_insert()`](https://cboettig.github.io/roxigraph/reference/rdf_store_insert.md)
+  : Insert a triple into the store
+
+## SPARQL
+
+Query and update RDF data
+
+- [`sparql_query()`](https://cboettig.github.io/roxigraph/reference/sparql_query.md)
+  : Execute a SPARQL Query
+- [`sparql_update()`](https://cboettig.github.io/roxigraph/reference/sparql_update.md)
+  : Execute SPARQL Update
+- [`rdf_store_query()`](https://cboettig.github.io/roxigraph/reference/rdf_store_query.md)
+  : Execute a SPARQL query and return results as a data frame
+- [`rdf_store_update()`](https://cboettig.github.io/roxigraph/reference/rdf_store_update.md)
+  : Execute a SPARQL UPDATE query
+
+## Triple Manipulation
+
+Direct triple operations
+
+- [`rdf_add()`](https://cboettig.github.io/roxigraph/reference/rdf_add.md)
+  : Add a Triple
+- [`rdf_remove()`](https://cboettig.github.io/roxigraph/reference/rdf_remove.md)
+  : Remove a Triple
+- [`rdf_store_remove()`](https://cboettig.github.io/roxigraph/reference/rdf_store_remove.md)
+  : Remove a triple from the store
+
+## Serialization
+
+Export RDF data
+
+- [`rdf_serialize()`](https://cboettig.github.io/roxigraph/reference/rdf_serialize.md)
+  : Serialize RDF Data
+- [`rdf_store_dump()`](https://cboettig.github.io/roxigraph/reference/rdf_store_dump.md)
+  : Serialize the store contents to a string
+
+# Articles
+
+### All vignettes
+
+- [Getting Started with
+  roxigraph](https://cboettig.github.io/roxigraph/articles/roxigraph.md):
