@@ -20,30 +20,39 @@ reference:
   desc: Create and manage RDF stores
   contents:
   - rdf_store
+  - rdf_store_new
+  - rdf_store_open
   - rdf_size
+  - rdf_store_size
 
 - title: Loading Data
   desc: Parse and load RDF data
   contents:
   - rdf_load
   - rdf_load_file
+  - rdf_store_load
+  - rdf_store_insert
 
 - title: SPARQL
   desc: Query and update RDF data
   contents:
   - sparql_query
   - sparql_update
+  - rdf_store_query
+  - rdf_store_update
 
 - title: Triple Manipulation
   desc: Direct triple operations
   contents:
   - rdf_add
   - rdf_remove
+  - rdf_store_remove
 
 - title: Serialization
   desc: Export RDF data
   contents:
   - rdf_serialize
+  - rdf_store_dump
 
 home:
   links:

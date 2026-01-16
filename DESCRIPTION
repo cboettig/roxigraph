@@ -5,7 +5,9 @@ Authors@R: c(
     person("Carl", "Boettiger", , "cboettig@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1642-628X")),
     person("Oxigraph Contributors", role = "cph",
-           comment = "Oxigraph Rust library")
+           comment = "Oxigraph Rust library"),
+    person("Authors of the dependency Rust crates", role = "aut",
+           comment = "see inst/AUTHORS file")
     )
 Description: Provides RDF storage and SPARQL 1.1 query capabilities by wrapping
     the Oxigraph graph database library. Supports in-memory and persistent
