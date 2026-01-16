@@ -11,3 +11,4 @@ src/Makevars.win
 *.o
 *.so
 *.dll
+.vscode/settings.json
