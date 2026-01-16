@@ -1,0 +1,51 @@
+url: https://cboettig.github.io/roxigraph/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github]
+  components:
+    articles:
+      text: Articles
+      menu:
+      - text: Getting Started
+        href: articles/roxigraph.html
+
+reference:
+- title: Store Management
+  desc: Create and manage RDF stores
+  contents:
+  - rdf_store
+  - rdf_size
+
+- title: Loading Data
+  desc: Parse and load RDF data
+  contents:
+  - rdf_load
+  - rdf_load_file
+
+- title: SPARQL
+  desc: Query and update RDF data
+  contents:
+  - sparql_query
+  - sparql_update
+
+- title: Triple Manipulation
+  desc: Direct triple operations
+  contents:
+  - rdf_add
+  - rdf_remove
+
+- title: Serialization
+  desc: Export RDF data
+  contents:
+  - rdf_serialize
+
+home:
+  links:
+  - text: Oxigraph (upstream library)
+    href: https://github.com/oxigraph/oxigraph
