@@ -6,6 +6,7 @@ test_that("rdf_store creates in-memory store", {
 
 test_that("rdf_store creates persistent store", {
     skip_on_cran() # Requires file system access
+    skip_on_os("windows") # RocksDB disabled on Windows
 
     tmp_dir <- tempfile("roxigraph_test_")
     store <- rdf_store(tmp_dir)
