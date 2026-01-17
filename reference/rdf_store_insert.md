@@ -16,11 +16,11 @@ rdf_store_insert(store_idx, subject, predicate, object, graph)
 
 - subject:
 
-  Subject IRI (e.g., "<http://example.org/s>") or blank node ("\_:b1")
+  Subject IRI (e.g., `"<http://example.org/s>"`) or blank node ("\_:b1")
 
 - predicate:
 
-  Predicate IRI (e.g., "<http://example.org/p>")
+  Predicate IRI (e.g., `"<http://example.org/p>"`)
 
 - object:
 
