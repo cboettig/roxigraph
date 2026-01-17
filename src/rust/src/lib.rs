@@ -34,10 +34,17 @@ fn rdf_store_new() -> i32 {
 /// @export
 #[extendr]
 fn rdf_store_open(path: &str) -> i32 {
-    let store = Store::open(path).expect("Failed to open store");
-    let mut stores = STORES.lock().unwrap();
-    stores.push(Arc::new(store));
-    (stores.len() - 1) as i32
+    #[cfg(feature = "rocksdb")]
+    {
+        let store = Store::open(path).expect("Failed to open store");
+        let mut stores = STORES.lock().unwrap();
+        stores.push(Arc::new(store));
+        (stores.len() - 1) as i32
+    }
+    #[cfg(not(feature = "rocksdb"))]
+    {
+        panic!("Persistent storage (RocksDB) is not supported on this platform (e.g. Windows).");
+    }
 }
 
 /// Get the number of quads in the store

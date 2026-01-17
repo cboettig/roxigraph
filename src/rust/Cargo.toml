@@ -9,9 +9,13 @@ rust-version = '1.65'
 crate-type = [ 'staticlib' ]
 name = 'roxigraph'
 
+[features]
+default = ["rocksdb"]
+rocksdb = ["oxigraph/rocksdb"]
+
 [dependencies]
 extendr-api = '0.8.1'
-oxigraph = "0.5"
+oxigraph = { version = "0.5", default-features = false }
 
 [profile.release]
 lto = true

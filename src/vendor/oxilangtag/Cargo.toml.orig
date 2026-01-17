@@ -1,0 +1,36 @@
+[package]
+name = "oxilangtag"
+version = "0.1.5"
+authors = [
+    "Tpt <thomas@pellissier-tanon.fr>"
+]
+license = "MIT"
+readme = "README.md"
+documentation = "https://docs.rs/oxilangtag"
+keywords = ["language-tag", "BCP47"]
+repository = "https://github.com/oxigraph/oxilangtag"
+description = """
+Simple and fast implementation of language tag normalization and validation
+"""
+edition = "2021"
+rust-version = "1.63"
+
+[features]
+default = ["std"]
+std = ["serde?/std"]
+alloc = ["serde?/alloc"]
+serialize = ["serde"]
+
+[dependencies]
+serde = { version = "1.0.100", optional = true, default_features = false }
+
+[dev-dependencies]
+criterion = ">=0.4,<0.6"
+serde_test = "1"
+
+[[bench]]
+name = "lib"
+harness = false
+
+[package.metadata.docs.rs]
+all-features = true

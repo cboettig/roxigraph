@@ -78,8 +78,8 @@ rdf_store_query <- function(store_idx, query) .Call(wrap__rdf_store_query, store
 
 #' Insert a triple into the store
 #' @param store_idx Store index
-#' @param subject Subject IRI (e.g., "<http://example.org/s>") or blank node ("_:b1")
-#' @param predicate Predicate IRI (e.g., "<http://example.org/p>")
+#' @param subject Subject IRI (e.g., \code{"<http://example.org/s>"}) or blank node ("_:b1")
+#' @param predicate Predicate IRI (e.g., \code{"<http://example.org/p>"})
 #' @param object Object (IRI, blank node, or literal with quotes e.g., "\"value\"")
 #' @param graph Optional graph name IRI
 #' @keywords internal
