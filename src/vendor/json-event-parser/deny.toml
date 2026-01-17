@@ -1,7 +1,0 @@
-[licenses]
-allow = [
-    "MIT",
-]
-
-[sources]
-unknown-registry = "deny"

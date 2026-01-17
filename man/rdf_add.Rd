@@ -9,9 +9,9 @@ rdf_add(store, subject, predicate, object, graph = NULL)
 \arguments{
 \item{store}{An RDF store handle}
 
-\item{subject}{Subject IRI (e.g., "\url{http://example.org/s}") or blank node ("_:b1")}
+\item{subject}{Subject IRI (e.g., \code{"<http://example.org/s>"}) or blank node ("_:b1")}
 
-\item{predicate}{Predicate IRI (e.g., "\url{http://example.org/p}")}
+\item{predicate}{Predicate IRI (e.g., \code{"<http://example.org/p>"})}
 
 \item{object}{Object: IRI, blank node, or literal (e.g., '"value"')}
 

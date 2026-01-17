@@ -128,8 +128,8 @@ rdf_size <- function(store) {
 #' Adds a single triple to the store.
 #'
 #' @param store An RDF store handle
-#' @param subject Subject IRI (e.g., \code{"<http://example.org/s>"}) or blank node ("_:b1")
-#' @param predicate Predicate IRI (e.g., \code{"<http://example.org/p>"})
+#' @param subject Subject IRI (e.g., `"<http://example.org/s>"`) or blank node ("_:b1")
+#' @param predicate Predicate IRI (e.g., `"<http://example.org/p>"`)
 #' @param object Object: IRI, blank node, or literal (e.g., '"value"')
 #' @param graph Optional named graph IRI
 #' @return Invisibly returns NULL
