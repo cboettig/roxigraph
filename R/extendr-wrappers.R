@@ -12,19 +12,32 @@ NULL
 
 #' Create a new in-memory RDF store
 #' @return Store index (integer handle)
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_size(store)
 rdf_store_new <- function() .Call(wrap__rdf_store_new)
 
 #' Open or create a persistent RDF store at the given path
 #' @param path Path to the store directory
 #' @return Store index (integer handle)
+#' @keywords internal
 #' @export
+#' @examples
+#' \dontrun{
+#' store <- rdf_store_open(tempdir())
+#' }
 rdf_store_open <- function(path) .Call(wrap__rdf_store_open, path)
 
 #' Get the number of quads in the store
 #' @param store_idx Store index
 #' @return The number of quads
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_size(store)
 rdf_store_size <- function(store_idx) .Call(wrap__rdf_store_size, store_idx)
 
 #' Load RDF data into the store
@@ -32,21 +45,35 @@ rdf_store_size <- function(store_idx) .Call(wrap__rdf_store_size, store_idx)
 #' @param data RDF data as a string
 #' @param format RDF format: "turtle", "ntriples", "rdfxml", "nquads", "trig"
 #' @param base_iri Optional base IRI for relative URIs
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
 rdf_store_load <- function(store_idx, data, format, base_iri) invisible(.Call(wrap__rdf_store_load, store_idx, data, format, base_iri))
 
 #' Serialize the store contents to a string
 #' @param store_idx Store index
 #' @param format RDF format: "turtle", "ntriples", "rdfxml", "nquads", "trig"
 #' @return The serialized RDF data
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
+#' rdf_store_dump(store, "turtle")
 rdf_store_dump <- function(store_idx, format) .Call(wrap__rdf_store_dump, store_idx, format)
 
 #' Execute a SPARQL query and return results as a data frame
 #' @param store_idx Store index
 #' @param query SPARQL query string
 #' @return Query results as a data frame (for SELECT) or logical (for ASK)
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
+#' rdf_store_query(store, "SELECT * WHERE { ?s ?p ?o }")
 rdf_store_query <- function(store_idx, query) .Call(wrap__rdf_store_query, store_idx, query)
 
 #' Insert a triple into the store
@@ -55,7 +82,11 @@ rdf_store_query <- function(store_idx, query) .Call(wrap__rdf_store_query, store
 #' @param predicate Predicate IRI (e.g., "<http://example.org/p>")
 #' @param object Object (IRI, blank node, or literal with quotes e.g., "\"value\"")
 #' @param graph Optional graph name IRI
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_insert(store, "<http://example.org/s>", "<http://example.org/p>", '"val"', NULL)
 rdf_store_insert <- function(store_idx, subject, predicate, object, graph) invisible(.Call(wrap__rdf_store_insert, store_idx, subject, predicate, object, graph))
 
 #' Remove a triple from the store
@@ -64,13 +95,22 @@ rdf_store_insert <- function(store_idx, subject, predicate, object, graph) invis
 #' @param predicate Predicate IRI
 #' @param object Object
 #' @param graph Optional graph name IRI
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_insert(store, "<http://example.org/s>", "<http://example.org/p>", '"val"', NULL)
+#' rdf_store_remove(store, "<http://example.org/s>", "<http://example.org/p>", '"val"', NULL)
 rdf_store_remove <- function(store_idx, subject, predicate, object, graph) invisible(.Call(wrap__rdf_store_remove, store_idx, subject, predicate, object, graph))
 
 #' Execute a SPARQL UPDATE query
 #' @param store_idx Store index
 #' @param update SPARQL UPDATE query string
+#' @keywords internal
 #' @export
+#' @examples
+#' store <- rdf_store_new()
+#' rdf_store_update(store, "INSERT DATA { <http://example.org/s> <http://example.org/p> 'val' }")
 rdf_store_update <- function(store_idx, update) invisible(.Call(wrap__rdf_store_update, store_idx, update))
 
 

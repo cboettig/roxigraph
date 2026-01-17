@@ -67,6 +67,13 @@ rdf_load <- function(store, data, format = "turtle", base_iri = NULL) {
 #' @param base_iri Optional base IRI for resolving relative URIs
 #' @return Invisibly returns NULL
 #' @export
+#' @examples
+#' store <- rdf_store()
+#' # Create a temporary RDF file
+#' tmp <- tempfile(fileext = ".nt")
+#' writeLines('<http://example.org/s> <http://example.org/p> "value" .', tmp)
+#' rdf_load_file(store, tmp)
+#' rdf_size(store)
 rdf_load_file <- function(store, file, format = NULL, base_iri = NULL) {
     if (is.null(format)) {
         ext <- tolower(tools::file_ext(file))
@@ -127,6 +134,10 @@ rdf_size <- function(store) {
 #' @param graph Optional named graph IRI
 #' @return Invisibly returns NULL
 #' @export
+#' @examples
+#' store <- rdf_store()
+#' rdf_add(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+#' rdf_size(store)
 rdf_add <- function(store, subject, predicate, object, graph = NULL) {
     rdf_store_insert(store, subject, predicate, object, graph)
     invisible(NULL)
@@ -143,6 +154,11 @@ rdf_add <- function(store, subject, predicate, object, graph = NULL) {
 #' @param graph Optional named graph IRI
 #' @return Invisibly returns NULL
 #' @export
+#' @examples
+#' store <- rdf_store()
+#' rdf_add(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+#' rdf_remove(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+#' rdf_size(store)
 rdf_remove <- function(store, subject, predicate, object, graph = NULL) {
     rdf_store_remove(store, subject, predicate, object, graph)
     invisible(NULL)

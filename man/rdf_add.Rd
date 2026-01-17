@@ -23,3 +23,8 @@ Invisibly returns NULL
 \description{
 Adds a single triple to the store.
 }
+\examples{
+store <- rdf_store()
+rdf_add(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+rdf_size(store)
+}

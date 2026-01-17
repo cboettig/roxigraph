@@ -12,3 +12,8 @@ Store index (integer handle)
 \description{
 Create a new in-memory RDF store
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_size(store)
+}
+\keyword{internal}

@@ -14,3 +14,8 @@ rdf_store_update(store_idx, update)
 \description{
 Execute a SPARQL UPDATE query
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_update(store, "INSERT DATA { <http://example.org/s> <http://example.org/p> 'val' }")
+}
+\keyword{internal}

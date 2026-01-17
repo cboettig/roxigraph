@@ -15,3 +15,9 @@ Store index (integer handle)
 \description{
 Open or create a persistent RDF store at the given path
 }
+\examples{
+\dontrun{
+store <- rdf_store_open(tempdir())
+}
+}
+\keyword{internal}

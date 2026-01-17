@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Provides RDF storage and SPARQL 1.1 query capabilities by wrapping the
-#' Oxigraph graph database library. Supports in-memory and persistent (RocksDB)
+#' 'Oxigraph' graph database library. Supports in-memory and persistent ('RocksDB')
 #' storage, multiple RDF serialization formats, and full SPARQL 1.1 Query and
 #' Update support.
 #'

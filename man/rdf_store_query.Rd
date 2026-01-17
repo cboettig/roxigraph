@@ -17,3 +17,9 @@ Query results as a data frame (for SELECT) or logical (for ASK)
 \description{
 Execute a SPARQL query and return results as a data frame
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
+rdf_store_query(store, "SELECT * WHERE { ?s ?p ?o }")
+}
+\keyword{internal}

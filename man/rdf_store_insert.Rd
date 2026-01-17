@@ -20,3 +20,8 @@ rdf_store_insert(store_idx, subject, predicate, object, graph)
 \description{
 Insert a triple into the store
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_insert(store, "<http://example.org/s>", "<http://example.org/p>", '"val"', NULL)
+}
+\keyword{internal}

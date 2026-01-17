@@ -23,3 +23,9 @@ Invisibly returns NULL
 \description{
 Removes a single triple from the store.
 }
+\examples{
+store <- rdf_store()
+rdf_add(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+rdf_remove(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+rdf_size(store)
+}

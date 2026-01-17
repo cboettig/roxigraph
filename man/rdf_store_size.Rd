@@ -15,3 +15,8 @@ The number of quads
 \description{
 Get the number of quads in the store
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_size(store)
+}
+\keyword{internal}

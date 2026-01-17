@@ -18,3 +18,8 @@ rdf_store_load(store_idx, data, format, base_iri)
 \description{
 Load RDF data into the store
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
+}
+\keyword{internal}

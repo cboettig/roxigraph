@@ -17,3 +17,9 @@ The serialized RDF data
 \description{
 Serialize the store contents to a string
 }
+\examples{
+store <- rdf_store_new()
+rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
+rdf_store_dump(store, "turtle")
+}
+\keyword{internal}
