@@ -29,3 +29,11 @@ rdf_store_remove(store_idx, subject, predicate, object, graph)
 - graph:
 
   Optional graph name IRI
+
+## Examples
+
+``` r
+store <- rdf_store_new()
+rdf_store_insert(store, "<http://example.org/s>", "<http://example.org/p>", '"val"', NULL)
+rdf_store_remove(store, "<http://example.org/s>", "<http://example.org/p>", '"val"', NULL)
+```

@@ -17,3 +17,11 @@ rdf_store_open(path)
 ## Value
 
 Store index (integer handle)
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+store <- rdf_store_open(tempdir())
+} # }
+```

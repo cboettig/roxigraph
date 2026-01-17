@@ -17,11 +17,11 @@ Source:
 [`DESCRIPTION`](https://github.com/cboettig/roxigraph/blob/main/DESCRIPTION)
 
 Boettiger C, Authors of the dependency Rust crates (2026). *roxigraph:
-RDF and SPARQL for R using Oxigraph*. R package version 0.1.0,
+RDF and SPARQL for R using 'Oxigraph'*. R package version 0.1.0,
 <https://github.com/cboettig/roxigraph>.
 
     @Manual{,
-      title = {roxigraph: RDF and SPARQL for R using Oxigraph},
+      title = {roxigraph: RDF and SPARQL for R using 'Oxigraph'},
       author = {Carl Boettiger and {Authors of the dependency Rust crates}},
       year = {2026},
       note = {R package version 0.1.0},

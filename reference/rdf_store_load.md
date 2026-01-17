@@ -25,3 +25,10 @@ rdf_store_load(store_idx, data, format, base_iri)
 - base_iri:
 
   Optional base IRI for relative URIs
+
+## Examples
+
+``` r
+store <- rdf_store_new()
+rdf_store_load(store, '<http://example.org/s> <http://example.org/p> "v" .', "ntriples", NULL)
+```

@@ -1,8 +1,8 @@
 # roxigraph: RDF and SPARQL for R
 
 Provides RDF storage and SPARQL 1.1 query capabilities by wrapping the
-Oxigraph graph database library. Supports in-memory and persistent
-(RocksDB) storage, multiple RDF serialization formats, and full SPARQL
+'Oxigraph' graph database library. Supports in-memory and persistent
+('RocksDB') storage, multiple RDF serialization formats, and full SPARQL
 1.1 Query and Update support.
 
 ## Main Functions
@@ -36,6 +36,10 @@ Useful links:
 
 **Maintainer**: Carl Boettiger <cboettig@gmail.com>
 ([ORCID](https://orcid.org/0000-0002-1642-628X))
+
+Authors:
+
+- Authors of the dependency Rust crates (see inst/AUTHORS file)
 
 Other contributors:
 

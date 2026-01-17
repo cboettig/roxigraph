@@ -33,3 +33,12 @@ rdf_add(store, subject, predicate, object, graph = NULL)
 ## Value
 
 Invisibly returns NULL
+
+## Examples
+
+``` r
+store <- rdf_store()
+rdf_add(store, "<http://example.org/s>", "<http://example.org/p>", '"hello"')
+rdf_size(store)
+#> [1] 1
+```
