@@ -12,8 +12,10 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 **roxigraph** provides RDF storage and SPARQL 1.1 query capabilities for
 R by wrapping the [Oxigraph](https://github.com/oxigraph/oxigraph) graph
-database library. Built using the [extendr](https://extendr.rs/)
-framework for high-performance Rust-R bindings. \## Features
+database library. Built using the [extendr](https://extendr.github.io/)
+framework for high-performance Rust-R bindings.
+
+## Features
 
 - 🚀 **High Performance**: Rust-powered RDF storage with RocksDB backend
 - 💾 **Flexible Storage**: In-memory or persistent on-disk databases
