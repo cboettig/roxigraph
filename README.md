@@ -6,8 +6,9 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/cboettig/roxigraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cboettig/roxigraph/actions/workflows/R-CMD-check.yaml)
-[![License:
-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/roxigraph)](https://CRAN.R-project.org/package=roxigraph)
+[![r-universe](https://cboettig.r-universe.dev/badges/roxigraph)](https://cboettig.r-universe.dev/roxigraph)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
 **roxigraph** provides RDF storage and SPARQL 1.1 query capabilities for
@@ -24,15 +25,33 @@ framework for high-performance Rust-R bindings.
 
 ## Installation
 
-You can install roxigraph from GitHub:
+### Windows / macOS (recommended)
+
+Install pre-built binaries from [r-universe](https://cboettig.r-universe.dev/roxigraph):
+
+``` r
+install.packages("roxigraph", repos = c("https://cboettig.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+### Linux (Ubuntu)
+
+For binary installation on Ubuntu (no Rust required):
+
+``` r
+# Set up r-universe binary repo for Linux
+repo <- sprintf("https://cboettig.r-universe.dev/bin/linux/noble-%s/%s/", 
+                R.version$arch, substr(getRversion(), 1, 3))
+install.packages("roxigraph", repos = c(repo, "https://cloud.r-project.org"))
+```
+
+### From source (requires Rust)
 
 ``` r
 # install.packages("pak")
 pak::pak("cboettig/roxigraph")
 ```
 
-### System Requirements
-
+Building from source requires:
 - **Rust** toolchain (rustc \>= 1.65, cargo)
 - **libclang-dev** (for RocksDB bindings on Linux)
 
