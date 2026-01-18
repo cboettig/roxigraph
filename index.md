@@ -14,17 +14,35 @@ framework for high-performance Rust-R bindings.
 
 ## Installation
 
-You can install roxigraph from GitHub:
+### Windows / macOS (recommended)
+
+Install pre-built binaries from
+[r-universe](https://cboettig.r-universe.dev/roxigraph):
+
+``` r
+install.packages("roxigraph", repos = c("https://cboettig.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+### Linux (Ubuntu)
+
+For binary installation on Ubuntu (no Rust required):
+
+``` r
+# Set up r-universe binary repo for Linux
+repo <- sprintf("https://cboettig.r-universe.dev/bin/linux/noble-%s/%s/", 
+                R.version$arch, substr(getRversion(), 1, 3))
+install.packages("roxigraph", repos = c(repo, "https://cloud.r-project.org"))
+```
+
+### From source (requires Rust)
 
 ``` r
 # install.packages("pak")
 pak::pak("cboettig/roxigraph")
 ```
 
-### System Requirements
-
-- **Rust** toolchain (rustc \>= 1.65, cargo)
-- **libclang-dev** (for RocksDB bindings on Linux)
+Building from source requires: - **Rust** toolchain (rustc \>= 1.65,
+cargo) - **libclang-dev** (for RocksDB bindings on Linux)
 
 On Ubuntu/Debian:
 

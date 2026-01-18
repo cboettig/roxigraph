@@ -74,31 +74,42 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install roxigraph from GitHub:</p>
+<div class="section level3">
+<h3 id="windows--macos-recommended">Windows / macOS (recommended)<a class="anchor" aria-label="anchor" href="#windows--macos-recommended"></a>
+</h3>
+<p>Install pre-built binaries from <a href="https://cboettig.r-universe.dev/roxigraph" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"roxigraph"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://cboettig.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="linux-ubuntu">Linux (Ubuntu)<a class="anchor" aria-label="anchor" href="#linux-ubuntu"></a>
+</h3>
+<p>For binary installation on Ubuntu (no Rust required):</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Set up r-universe binary repo for Linux</span></span>
+<span><span class="va">repo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"https://cboettig.r-universe.dev/bin/linux/noble-%s/%s/"</span>, </span>
+<span>                <span class="va">R.version</span><span class="op">$</span><span class="va">arch</span>, <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"roxigraph"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">repo</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="from-source-requires-rust">From source (requires Rust)<a class="anchor" aria-label="anchor" href="#from-source-requires-rust"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"cboettig/roxigraph"</span><span class="op">)</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="system-requirements">System Requirements<a class="anchor" aria-label="anchor" href="#system-requirements"></a>
-</h3>
-<ul>
-<li>
-<strong>Rust</strong> toolchain (rustc &gt;= 1.65, cargo)</li>
-<li>
-<strong>libclang-dev</strong> (for RocksDB bindings on Linux)</li>
-</ul>
+<p>Building from source requires: - <strong>Rust</strong> toolchain (rustc &gt;= 1.65, cargo) - <strong>libclang-dev</strong> (for RocksDB bindings on Linux)</p>
 <p>On Ubuntu/Debian:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Install Rust</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proto</span> <span class="st">'=https'</span> <span class="at">--tlsv1.2</span> <span class="at">-sSf</span> https://sh.rustup.rs <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Install libclang</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">sudo</span> apt-get install libclang-dev</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Install Rust</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proto</span> <span class="st">'=https'</span> <span class="at">--tlsv1.2</span> <span class="at">-sSf</span> https://sh.rustup.rs <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Install libclang</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">sudo</span> apt-get install libclang-dev</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cboettig/roxigraph" class="external-link">roxigraph</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Create an in-memory store</span></span>
@@ -132,7 +143,7 @@
 <h2 id="persistent-storage">Persistent Storage<a class="anchor" aria-label="anchor" href="#persistent-storage"></a>
 </h2>
 <p>For data that should persist across R sessions:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create a persistent store</span></span>
 <span><span class="va">store</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rdf_store.html">rdf_store</a></span><span class="op">(</span><span class="st">"/path/to/my/database"</span><span class="op">)</span></span>
 <span></span>
@@ -143,7 +154,7 @@
 <h2 id="sparql-update">SPARQL Update<a class="anchor" aria-label="anchor" href="#sparql-update"></a>
 </h2>
 <p>Modify your data using SPARQL Update:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">store</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rdf_store.html">rdf_store</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Insert data</span></span>
@@ -162,7 +173,7 @@
 <h2 id="serialization">Serialization<a class="anchor" aria-label="anchor" href="#serialization"></a>
 </h2>
 <p>Export your RDF data to various formats:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">store</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rdf_store.html">rdf_store</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/rdf_load.html">rdf_load</a></span><span class="op">(</span><span class="va">store</span>, <span class="st">'&lt;http://ex.org/s&gt; &lt;http://ex.org/p&gt; "hello" .'</span>, format <span class="op">=</span> <span class="st">"ntriples"</span><span class="op">)</span></span>
 <span></span>
@@ -225,6 +236,8 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/cboettig/roxigraph/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/cboettig/roxigraph/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=roxigraph" class="external-link"><img src="https://www.r-pkg.org/badges/version/roxigraph" alt="CRAN status"></a></li>
+<li><a href="https://cboettig.r-universe.dev/roxigraph" class="external-link"><img src="https://cboettig.r-universe.dev/badges/roxigraph" alt="r-universe"></a></li>
 <li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
 </ul>
 </div>
