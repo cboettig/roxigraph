@@ -1,5 +1,5 @@
 Package: roxigraph
-Title: RDF and SPARQL for R using 'Oxigraph'
+Title: 'RDF' and 'SPARQL' for R using 'Oxigraph'
 Version: 0.1.0
 Authors@R: c(
     person("Carl", "Boettiger", , "cboettig@gmail.com", role = c("aut", "cre"),
@@ -9,10 +9,10 @@ Authors@R: c(
     person("Authors of the dependency Rust crates", role = "aut",
            comment = "see inst/AUTHORS file")
     )
-Description: Provides RDF storage and SPARQL 1.1 query capabilities by wrapping
+Description: Provides 'RDF' storage and 'SPARQL' 1.1 query capabilities by wrapping
     the 'Oxigraph' graph database library. Supports in-memory and persistent
     ('RocksDB') storage, multiple RDF serialization formats ('Turtle', 'N-Triples',
-    'RDF-XML', 'N-Quads', 'TriG'), and full SPARQL 1.1 Query and Update support.
+    'RDF-XML', 'N-Quads', 'TriG'), and full 'SPARQL' 1.1 Query and Update support.
     Built using the 'extendr' framework for Rust-R bindings.
 License: MIT + file LICENSE
 URL: https://github.com/cboettig/roxigraph

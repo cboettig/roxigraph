@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-**roxigraph** provides RDF storage and SPARQL 1.1 query capabilities for R by wrapping the [Oxigraph](https://github.com/oxigraph/oxigraph) graph database library. Built using the [extendr](https://extendr.github.io/) framework for high-performance Rust-R bindings.
+**roxigraph** provides RDF storage and SPARQL 1.1 query capabilities for R by wrapping the [Oxigraph](https://github.com/oxigraph/oxigraph) graph database library. Built using the [extendr](https://extendr.rs/) framework for high-performance Rust-R bindings.
 
 ## Features
 
