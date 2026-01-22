@@ -11,7 +11,7 @@ Authors@R: c(
     )
 Description: Provides 'RDF' storage and 'SPARQL' 1.1 query capabilities by wrapping
     the 'Oxigraph' graph database library. Supports in-memory and persistent
-    ('RocksDB') storage, multiple RDF serialization formats ('Turtle', 'N-Triples',
+    ('RocksDB') storage, multiple 'RDF' serialization formats ('Turtle', 'N-Triples',
     'RDF-XML', 'N-Quads', 'TriG'), and full 'SPARQL' 1.1 Query and Update support.
     Built using the 'extendr' framework for Rust-R bindings.
 License: MIT + file LICENSE
