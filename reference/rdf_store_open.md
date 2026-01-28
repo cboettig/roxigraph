@@ -22,6 +22,8 @@ Store index (integer handle)
 
 ``` r
 # \donttest{
-store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+if (.Platform$OS.type != "windows") {
+  store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+}
 # }
 ```
