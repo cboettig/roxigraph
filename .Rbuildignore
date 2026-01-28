@@ -14,3 +14,5 @@
 ^src/Makevars\.win$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^doc$
+^Meta$
