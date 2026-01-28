@@ -20,8 +20,10 @@ Creates a new RDF store, either in-memory or backed by persistent storage.
 # In-memory store
 store <- rdf_store()
 
-# Persistent store
+# Persistent store (not supported on Windows)
 \donttest{
-store <- rdf_store(file.path(tempdir(), "my_store"))
+if (.Platform$OS.type != "windows") {
+  store <- rdf_store(file.path(tempdir(), "my_store"))
+}
 }
 }

@@ -10,9 +10,11 @@
 #' # In-memory store
 #' store <- rdf_store()
 #'
-#' # Persistent store
+#' # Persistent store (not supported on Windows)
 #' \donttest{
-#' store <- rdf_store(file.path(tempdir(), "my_store"))
+#' if (.Platform$OS.type != "windows") {
+#'   store <- rdf_store(file.path(tempdir(), "my_store"))
+#' }
 #' }
 rdf_store <- function(path = NULL) {
     if (is.null(path)) {

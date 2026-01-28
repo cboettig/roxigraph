@@ -17,7 +17,9 @@ Open or create a persistent RDF store at the given path
 }
 \examples{
 \donttest{
-store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+if (.Platform$OS.type != "windows") {
+  store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+}
 }
 }
 \keyword{internal}

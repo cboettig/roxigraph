@@ -30,7 +30,9 @@ rdf_store_new <- function() .Call(wrap__rdf_store_new)
 #' @export
 #' @examples
 #' \donttest{
-#' store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+#' if (.Platform$OS.type != "windows") {
+#'   store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+#' }
 #' }
 rdf_store_open <- function(path) .Call(wrap__rdf_store_open, path)
 
