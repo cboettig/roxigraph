@@ -16,8 +16,8 @@ Store index (integer handle)
 Open or create a persistent RDF store at the given path
 }
 \examples{
-\dontrun{
-store <- rdf_store_open(tempdir())
+\donttest{
+store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
 }
 }
 \keyword{internal}

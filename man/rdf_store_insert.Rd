@@ -17,6 +17,9 @@ rdf_store_insert(store_idx, subject, predicate, object, graph)
 
 \item{graph}{Optional graph name IRI}
 }
+\value{
+No return value, called for side effects (inserting triples into the store)
+}
 \description{
 Insert a triple into the store
 }

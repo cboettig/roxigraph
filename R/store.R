@@ -11,8 +11,8 @@
 #' store <- rdf_store()
 #'
 #' # Persistent store
-#' \dontrun{
-#' store <- rdf_store("/path/to/store")
+#' \donttest{
+#' store <- rdf_store(file.path(tempdir(), "my_store"))
 #' }
 rdf_store <- function(path = NULL) {
     if (is.null(path)) {

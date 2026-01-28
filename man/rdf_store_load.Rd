@@ -15,6 +15,9 @@ rdf_store_load(store_idx, data, format, base_iri)
 
 \item{base_iri}{Optional base IRI for relative URIs}
 }
+\value{
+No return value, called for side effects (loading data into the store)
+}
 \description{
 Load RDF data into the store
 }

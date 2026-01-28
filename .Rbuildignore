@@ -12,3 +12,5 @@
 ^src/rust/target$
 ^src/Makevars$
 ^src/Makevars\.win$
+^CRAN-SUBMISSION$
+^cran-comments\.md$

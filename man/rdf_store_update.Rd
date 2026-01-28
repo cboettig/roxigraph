@@ -11,6 +11,9 @@ rdf_store_update(store_idx, update)
 
 \item{update}{SPARQL UPDATE query string}
 }
+\value{
+No return value, called for side effects (executing SPARQL UPDATE queries)
+}
 \description{
 Execute a SPARQL UPDATE query
 }

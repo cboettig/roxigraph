@@ -17,6 +17,9 @@ rdf_store_remove(store_idx, subject, predicate, object, graph)
 
 \item{graph}{Optional graph name IRI}
 }
+\value{
+No return value, called for side effects (removing triples from the store)
+}
 \description{
 Remove a triple from the store
 }

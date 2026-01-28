@@ -11,6 +11,10 @@
 NULL
 
 #' Create a new in-memory RDF store
+#' 
+#' @section Arguments:
+#' This function takes no arguments.
+#' 
 #' @return Store index (integer handle)
 #' @keywords internal
 #' @export
@@ -25,8 +29,8 @@ rdf_store_new <- function() .Call(wrap__rdf_store_new)
 #' @keywords internal
 #' @export
 #' @examples
-#' \dontrun{
-#' store <- rdf_store_open(tempdir())
+#' \donttest{
+#' store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
 #' }
 rdf_store_open <- function(path) .Call(wrap__rdf_store_open, path)
 
@@ -45,6 +49,7 @@ rdf_store_size <- function(store_idx) .Call(wrap__rdf_store_size, store_idx)
 #' @param data RDF data as a string
 #' @param format RDF format: "turtle", "ntriples", "rdfxml", "nquads", "trig"
 #' @param base_iri Optional base IRI for relative URIs
+#' @return No return value, called for side effects (loading data into the store)
 #' @keywords internal
 #' @export
 #' @examples
@@ -82,6 +87,7 @@ rdf_store_query <- function(store_idx, query) .Call(wrap__rdf_store_query, store
 #' @param predicate Predicate IRI (e.g., `"<http://example.org/p>"`)
 #' @param object Object (IRI, blank node, or literal with quotes e.g., "\"value\"")
 #' @param graph Optional graph name IRI
+#' @return No return value, called for side effects (inserting triples into the store)
 #' @keywords internal
 #' @export
 #' @examples
@@ -95,6 +101,7 @@ rdf_store_insert <- function(store_idx, subject, predicate, object, graph) invis
 #' @param predicate Predicate IRI
 #' @param object Object
 #' @param graph Optional graph name IRI
+#' @return No return value, called for side effects (removing triples from the store)
 #' @keywords internal
 #' @export
 #' @examples
@@ -106,6 +113,7 @@ rdf_store_remove <- function(store_idx, subject, predicate, object, graph) invis
 #' Execute a SPARQL UPDATE query
 #' @param store_idx Store index
 #' @param update SPARQL UPDATE query string
+#' @return No return value, called for side effects (executing SPARQL UPDATE queries)
 #' @keywords internal
 #' @export
 #' @examples

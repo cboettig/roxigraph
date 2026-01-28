@@ -21,7 +21,7 @@ Creates a new RDF store, either in-memory or backed by persistent storage.
 store <- rdf_store()
 
 # Persistent store
-\dontrun{
-store <- rdf_store("/path/to/store")
+\donttest{
+store <- rdf_store(file.path(tempdir(), "my_store"))
 }
 }
