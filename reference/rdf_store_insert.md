@@ -30,6 +30,11 @@ rdf_store_insert(store_idx, subject, predicate, object, graph)
 
   Optional graph name IRI
 
+## Value
+
+No return value, called for side effects (inserting triples into the
+store)
+
 ## Examples
 
 ``` r

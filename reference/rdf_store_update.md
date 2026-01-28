@@ -18,6 +18,11 @@ rdf_store_update(store_idx, update)
 
   SPARQL UPDATE query string
 
+## Value
+
+No return value, called for side effects (executing SPARQL UPDATE
+queries)
+
 ## Examples
 
 ``` r

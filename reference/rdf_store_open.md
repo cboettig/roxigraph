@@ -21,7 +21,7 @@ Store index (integer handle)
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-store <- rdf_store_open(tempdir())
-} # }
+# \donttest{
+store <- rdf_store_open(file.path(tempdir(), "roxigraph_test"))
+# }
 ```

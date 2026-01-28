@@ -30,6 +30,11 @@ rdf_store_remove(store_idx, subject, predicate, object, graph)
 
   Optional graph name IRI
 
+## Value
+
+No return value, called for side effects (removing triples from the
+store)
+
 ## Examples
 
 ``` r

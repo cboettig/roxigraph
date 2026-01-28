@@ -26,6 +26,10 @@ rdf_store_load(store_idx, data, format, base_iri)
 
   Optional base IRI for relative URIs
 
+## Value
+
+No return value, called for side effects (loading data into the store)
+
 ## Examples
 
 ``` r

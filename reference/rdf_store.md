@@ -27,7 +27,7 @@ An RDF store handle (integer)
 store <- rdf_store()
 
 # Persistent store
-if (FALSE) { # \dontrun{
-store <- rdf_store("/path/to/store")
-} # }
+# \donttest{
+store <- rdf_store(file.path(tempdir(), "my_store"))
+# }
 ```

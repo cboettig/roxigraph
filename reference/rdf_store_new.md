@@ -12,6 +12,10 @@ rdf_store_new()
 
 Store index (integer handle)
 
+## Arguments
+
+This function takes no arguments.
+
 ## Examples
 
 ``` r
