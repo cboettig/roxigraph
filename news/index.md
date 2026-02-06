@@ -7,6 +7,4 @@
   `oxigraph` requiring bleeding-edge Rust).
 - Added `libsnappy-dev` to SystemRequirements for RocksDB compression
   support.
-- Suppressed “unused parameter” warnings in RocksDB build to prevent
-  compilation failures on newer GCC/Clang compilers (`-Werror`
-  behavior).
+- 
