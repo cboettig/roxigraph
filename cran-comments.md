@@ -23,4 +23,6 @@ This is a resubmission addressing the following issues from the previous review:
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* This is release 0.1.1.
+* Addressed `oxrocksdb` build warnings on newer compilers by suppressing unused parameter warnings.
+* Pinned internal Rust dependencies to ensure compatibility with older Rust versions (1.70+).
