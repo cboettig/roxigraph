@@ -11,7 +11,7 @@ Authors@R: c(
     )
 Description: Provides 'RDF' storage and 'SPARQL' 1.1 query capabilities by wrapping
     the 'Oxigraph' graph database library <https://github.com/oxigraph/oxigraph>. 
-    Supports in-memory and persistent ('RocksDB') storage, multiple 'RDF' 
+    Supports in-memory and persistent (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     'RocksDB') storage, multiple 'RDF' 
     serialization formats ('Turtle', 'N-Triples', 'RDF-XML', 'N-Quads', 'TriG'), 
     and full 'SPARQL' 1.1 Query and Update support. Built using the 'extendr' 
     framework for 'Rust'-R bindings.
@@ -22,7 +22,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Config/rextendr/version: 0.4.2
-SystemRequirements: Cargo (Rust's package manager), rustc >= 1.65.0, 
+SystemRequirements: Cargo (Rust's package manager), rustc >= 1.70.0, 
     libclang-dev (for RocksDB bindings)
 Depends: 
     R (>= 4.2)
