@@ -2,38 +2,10 @@ use extendr_api::prelude::*;
 use oxigraph::io::RdfFormat;
 use oxigraph::model::*;
 use oxigraph::model::vocab::xsd;
-use oxigraph::sparql::QueryResults;
+use oxigraph::sparql::{QueryResults, SparqlEvaluator};
 use oxigraph::store::Store;
 use std::io::Cursor;
 use std::sync::{Arc, Mutex};
-
-// ... (existing imports)
-
-// Change SparqlEvaluator usage (it seems store.query() might be better or QueryEvaluator)
-// But wait, allow me to just change the import first and check.
-// Actually, let's look at the error "no SparqlEvaluator... help: QueryEvaluator"
-
-// Detailed plan within replacement:
-// 1. Replace import: use oxigraph::sparql::{QueryResults, SparqlEvaluator}; -> use oxigraph::sparql::{QueryResults, QueryOptions}; (Wait, QueryEvaluator is not in sparql?)
-// The error said: "no SparqlEvaluator in sparql... help: a similar name exists in the module: QueryEvaluator"
-// Wait, if it exists in the module, it should be importable.
-// Maybe `use oxigraph::sparql::QueryEvaluator`?
-
-// 2. named_or_blank_to_string:
-// fn named_or_blank_to_string(subj: &Subject) -> String {
-//     match subj {
-//         Subject::NamedNode(n) => format!("<{}>", n.as_str()),
-//         Subject::BlankNode(b) => format!("_:{}", b.as_str()),
-//         Subject::Triple(t) => t.to_string(), // Subject can be a triple in RDF-star
-//     }
-// }
-
-// 3. parse_subject return type:
-// fn parse_subject(s: &str) -> Subject { ... }
-// And wrappers: NamedNode -> Subject::NamedNode(...)
-
-// Let's do it in chunks.
-
 
 // Global store registry using Arc for shared ownership
 static STORES: Mutex<Vec<Arc<Store>>> = Mutex::new(Vec::new());
@@ -164,8 +136,11 @@ fn rdf_store_dump(store_idx: i32, format: &str) -> String {
 fn rdf_store_query(store_idx: i32, query: &str) -> Robj {
     let store = get_store(store_idx);
     
-    // In oxigraph 0.4, use store.query()
-    let results = store.query(query)
+    let results = SparqlEvaluator::new()
+        .parse_query(query)
+        .expect("Failed to parse SPARQL query")
+        .on_store(&store)
+        .execute()
         .expect("Failed to execute query");
     
     match results {
@@ -333,25 +308,23 @@ fn term_to_string(term: &Term) -> String {
                 format!("\"{}\"^^<{}>", l.value(), l.datatype().as_str())
             }
         }
-        Term::Triple(t) => t.to_string(),
     }
 }
 
-fn named_or_blank_to_string(subj: &Subject) -> String {
+fn named_or_blank_to_string(subj: &NamedOrBlankNode) -> String {
     match subj {
-        Subject::NamedNode(n) => format!("<{}>", n.as_str()),
-        Subject::BlankNode(b) => format!("_:{}", b.as_str()),
-        Subject::Triple(t) => t.to_string(),
+        NamedOrBlankNode::NamedNode(n) => format!("<{}>", n.as_str()),
+        NamedOrBlankNode::BlankNode(b) => format!("_:{}", b.as_str()),
     }
 }
 
-fn parse_subject(s: &str) -> Subject {
+fn parse_subject(s: &str) -> NamedOrBlankNode {
     let s = s.trim();
     if s.starts_with("_:") {
-        Subject::BlankNode(BlankNode::new(&s[2..]).unwrap())
+        NamedOrBlankNode::BlankNode(BlankNode::new(&s[2..]).unwrap())
     } else {
         let iri = s.trim_matches(|c| c == '<' || c == '>');
-        Subject::NamedNode(NamedNode::new(iri).unwrap())
+        NamedOrBlankNode::NamedNode(NamedNode::new(iri).unwrap())
     }
 }
 

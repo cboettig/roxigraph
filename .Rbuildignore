@@ -16,6 +16,3 @@
 ^cran-comments\.md$
 ^doc$
 ^Meta$
-^roxigraph_.*\.tar\.gz$
-^vendor\.tar\.xz$
-^wget-log$
