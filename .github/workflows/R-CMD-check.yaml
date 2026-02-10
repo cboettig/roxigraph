@@ -21,6 +21,7 @@ jobs:
           # Windows intentionally excluded - oxigraph's RocksDB bindings
           # don't support Windows GNU toolchain compilation
           - {os: macos-latest,   r: 'release'}
+          - {os: macos-14,       r: 'release'}
           - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,  r: 'release'}
           - {os: ubuntu-latest,  r: 'oldrel-1'}
