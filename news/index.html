@@ -39,8 +39,8 @@
 <h2 class="pkg-version" data-toc-text="0.1.1" id="roxigraph-011">roxigraph 0.1.1<a class="anchor" aria-label="anchor" href="#roxigraph-011"></a></h2>
 <ul><li>Fixed Rust version compatibility by pinning <code>oxigraph</code> dependency to 0.5.2, ensuring support for Rust 1.70.0+ (resolving issues with newer <code>oxigraph</code> requiring bleeding-edge Rust).</li>
 <li>Added <code>libsnappy-dev</code> to SystemRequirements for RocksDB compression support.</li>
-<li>
-</li></ul></div>
+<li>Fixed linker warnings on macOS ARM64 (M1/M2) builds by setting a default <code>MACOSX_DEPLOYMENT_TARGET</code>.</li>
+</ul></div>
   </main></div>
 
 

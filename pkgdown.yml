@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   roxigraph: roxigraph.html
-last_built: 2026-02-11T03:30Z
+last_built: 2026-02-11T04:33Z
 urls:
   reference: https://cboettig.github.io/roxigraph/reference
   article: https://cboettig.github.io/roxigraph/articles

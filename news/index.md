@@ -7,4 +7,5 @@
   `oxigraph` requiring bleeding-edge Rust).
 - Added `libsnappy-dev` to SystemRequirements for RocksDB compression
   support.
-- 
+- Fixed linker warnings on macOS ARM64 (M1/M2) builds by setting a
+  default `MACOSX_DEPLOYMENT_TARGET`.
