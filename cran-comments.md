@@ -1,34 +1,42 @@
 ## Resubmission
 
-This is a resubmission addressing the following issues from the previous review:
+This release (0.1.2) addresses the rustc version-compatibility issue
+flagged by Prof. Brian Ripley on 2026-04-30:
 
-* **Software names**: Added single quotes around all software names in DESCRIPTION (e.g., 'Rust', 'Oxigraph', 'RocksDB', 'SPARQL', etc.)
+> error: rustc 1.86.0 is not supported by the following packages:
+>    oxigraph@0.5.2 requires rustc 1.87
+>    [... and the matching oxrdf, oxttl, sparesults, etc. crates]
 
-* **References**: Added reference URL for Oxigraph (<https://github.com/oxigraph/oxigraph>) in DESCRIPTION
+The previous release pinned the Rust dependency to `oxigraph` 0.5.2,
+but the entire 0.5.x line of `oxigraph` and its companion crates declares
+`rust-version = "1.87"`, which exceeds the CRAN policy requirement of
+testing on a rustc at least two years old (1.77.2 as of this submission).
 
-* **Missing \value tags**: Added @return documentation to all exported functions:
-  - rdf_store_insert.Rd
-  - rdf_store_load.Rd
-  - rdf_store_remove.Rd
-  - rdf_store_update.Rd
+In this release we have downgraded the pinned Rust dependency to
+`oxigraph = "=0.4.11"`. Every vendored `oxigraph`-family crate
+(`oxigraph`, `oxrdf`, `oxrdfio`, `oxrdfxml`, `oxrocksdb-sys`, `oxttl`,
+`oxjsonld`, `sparesults`, `spareval`, `spargebra`, `sparopt`) now
+declares `rust-version = "1.75"`, which is comfortably below the 1.77.2
+ceiling. We have updated `DESCRIPTION` and `Cargo.toml` accordingly to
+declare a minimum supported rustc of 1.75.
 
-* **Missing \arguments**: Added explicit Arguments section to rdf_store_new.Rd (function takes no arguments)
+We have verified locally that the package builds with rustc 1.77.2 on
+Linux x86_64 using the offline-vendored sources.
 
-* **\dontrun usage**: Replaced \dontrun{} with \donttest{} in:
-  - rdf_store.Rd
-  - rdf_store_open.Rd
-  
-  These examples require persistent file storage and are correctly wrapped in \donttest{} as they write to disk.
+A tracking issue (https://github.com/cboettig/roxigraph/issues/2)
+records the path back to oxigraph 0.5.x once CRAN's two-year rustc
+ceiling reaches 1.87.
+
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+`R CMD check --as-cran` produces 0 errors and 0 warnings.
 
-* This is release 0.1.1.
+The remaining INFO is the expected "installed size" note (~11 Mb)
+arising from the statically-linked vendored Rust + RocksDB C++ object
+code, which is unavoidable for this package.
 
-* Pinned internal Rust dependencies to ensure compatibility with older Rust versions (1.70+).
+* This is release 0.1.2.
 
-* ADDRESSED M1 MAC LINKER WARNINGS:
-  We have addressed the linker warnings seen on M1 Macs:
-  `ld: warning: object file ... was built for newer 'macOS' version (26.2) than being linked (26.0)`
-  
-  This was caused by `rustc` defaulting to a newer macOS target than the one used by R for linking. We have fixed this by explicitly setting a default `MACOSX_DEPLOYMENT_TARGET` in `src/Makevars.in` if it is not already provided by the environment. This ensures that the Rust components are built with a deployment target compatible with the R build environment on macOS ARM64.
+* All carry-over fixes from 0.1.1 (M1 Mac linker warnings, libsnappy-dev
+  system requirement, single-quoted software names, \value tags, etc.)
+  are retained.
