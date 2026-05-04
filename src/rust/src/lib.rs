@@ -2,7 +2,7 @@ use extendr_api::prelude::*;
 use oxigraph::io::RdfFormat;
 use oxigraph::model::*;
 use oxigraph::model::vocab::xsd;
-use oxigraph::sparql::{QueryResults, SparqlEvaluator};
+use oxigraph::sparql::QueryResults;
 use oxigraph::store::Store;
 use std::io::Cursor;
 use std::sync::{Arc, Mutex};
@@ -136,11 +136,7 @@ fn rdf_store_dump(store_idx: i32, format: &str) -> String {
 fn rdf_store_query(store_idx: i32, query: &str) -> Robj {
     let store = get_store(store_idx);
     
-    let results = SparqlEvaluator::new()
-        .parse_query(query)
-        .expect("Failed to parse SPARQL query")
-        .on_store(&store)
-        .execute()
+    let results = store.query(query)
         .expect("Failed to execute query");
     
     match results {
@@ -308,23 +304,25 @@ fn term_to_string(term: &Term) -> String {
                 format!("\"{}\"^^<{}>", l.value(), l.datatype().as_str())
             }
         }
+        Term::Triple(t) => t.to_string(),
     }
 }
 
-fn named_or_blank_to_string(subj: &NamedOrBlankNode) -> String {
+fn named_or_blank_to_string(subj: &Subject) -> String {
     match subj {
-        NamedOrBlankNode::NamedNode(n) => format!("<{}>", n.as_str()),
-        NamedOrBlankNode::BlankNode(b) => format!("_:{}", b.as_str()),
+        Subject::NamedNode(n) => format!("<{}>", n.as_str()),
+        Subject::BlankNode(b) => format!("_:{}", b.as_str()),
+        Subject::Triple(t) => t.to_string(),
     }
 }
 
-fn parse_subject(s: &str) -> NamedOrBlankNode {
+fn parse_subject(s: &str) -> Subject {
     let s = s.trim();
     if s.starts_with("_:") {
-        NamedOrBlankNode::BlankNode(BlankNode::new(&s[2..]).unwrap())
+        Subject::BlankNode(BlankNode::new(&s[2..]).unwrap())
     } else {
         let iri = s.trim_matches(|c| c == '<' || c == '>');
-        NamedOrBlankNode::NamedNode(NamedNode::new(iri).unwrap())
+        Subject::NamedNode(NamedNode::new(iri).unwrap())
     }
 }
 
