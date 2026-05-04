@@ -20,6 +20,7 @@ Install pre-built binaries from
 [r-universe](https://cboettig.r-universe.dev/roxigraph):
 
 ``` r
+
 install.packages("roxigraph", repos = c("https://cboettig.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
@@ -28,6 +29,7 @@ install.packages("roxigraph", repos = c("https://cboettig.r-universe.dev", "http
 For binary installation on Ubuntu (no Rust required):
 
 ``` r
+
 # Set up r-universe binary repo for Linux
 repo <- sprintf(
   "https://cboettig.r-universe.dev/bin/linux/noble-%s/%s/",
@@ -39,6 +41,7 @@ install.packages("roxigraph", repos = c(repo, "https://cloud.r-project.org"))
 ### From source (requires Rust)
 
 ``` r
+
 # install.packages("pak")
 pak::pak("cboettig/roxigraph")
 ```
@@ -59,6 +62,7 @@ sudo apt-get install libclang-dev
 ## Quick Start
 
 ``` r
+
 library(roxigraph)
 
 # Create an in-memory store
@@ -94,6 +98,7 @@ rdf_size(store)
 For data that should persist across R sessions:
 
 ``` r
+
 # Create a persistent store
 store <- rdf_store("/path/to/my/database")
 
@@ -106,6 +111,7 @@ rdf_load(store, data, format = "turtle")
 Modify your data using SPARQL Update:
 
 ``` r
+
 store <- rdf_store()
 
 # Insert data
@@ -126,6 +132,7 @@ sparql_query(store, "SELECT * WHERE { ?s ?p ?o }")
 Export your RDF data to various formats:
 
 ``` r
+
 store <- rdf_store()
 rdf_load(store, '<http://ex.org/s> <http://ex.org/p> "hello" .', format = "ntriples")
 

@@ -9,6 +9,7 @@ database. This vignette introduces the core functionality.
 ## Creating an RDF Store
 
 ``` r
+
 library(roxigraph)
 
 # Create an in-memory store
@@ -18,6 +19,7 @@ store <- rdf_store()
 For persistent storage that survives R sessions:
 
 ``` r
+
 store <- rdf_store("/path/to/database")
 ```
 
@@ -28,6 +30,7 @@ roxigraph supports multiple RDF serialization formats:
 ### Turtle
 
 ``` r
+
 turtle_data <- '
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ex: <http://example.org/> .
@@ -50,6 +53,7 @@ rdf_size(store)
 ### N-Triples
 
 ``` r
+
 store2 <- rdf_store()
 nt_data <- '<http://example.org/s> <http://example.org/p> "object" .'
 rdf_load(store2, nt_data, format = "ntriples")
@@ -58,6 +62,7 @@ rdf_load(store2, nt_data, format = "ntriples")
 ### From Files
 
 ``` r
+
 rdf_load_file(store, "data.ttl", format = "turtle")
 rdf_load_file(store, "data.nt") # Format guessed from extension
 ```
@@ -67,6 +72,7 @@ rdf_load_file(store, "data.nt") # Format guessed from extension
 ### SELECT Queries
 
 ``` r
+
 # Find all people and their names
 results <- sparql_query(store, "
   PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -85,6 +91,7 @@ results
 ### Filtering and Sorting
 
 ``` r
+
 # Find people over 26
 sparql_query(store, "
   PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -103,6 +110,7 @@ sparql_query(store, "
 ### ASK Queries
 
 ``` r
+
 # Check if Alice exists
 sparql_query(store, "
   PREFIX ex: <http://example.org/>
@@ -114,6 +122,7 @@ sparql_query(store, "
 ### Aggregation
 
 ``` r
+
 sparql_query(store, "
   PREFIX foaf: <http://xmlns.com/foaf/0.1/>
   SELECT (COUNT(?person) as ?count) (AVG(?age) as ?avg_age)
@@ -133,6 +142,7 @@ sparql_query(store, "
 ### SPARQL Update
 
 ``` r
+
 # Add new data
 sparql_update(store, "
   PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -152,6 +162,7 @@ rdf_size(store)
 ### Direct Triple Manipulation
 
 ``` r
+
 # Add a triple
 rdf_add(
     store, "<http://example.org/carol>",
@@ -172,6 +183,7 @@ rdf_remove(
 Export your RDF data:
 
 ``` r
+
 # Export to N-Quads format
 output <- rdf_serialize(store, format = "nquads")
 cat(substr(output, 1, 500), "...\n")

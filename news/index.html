@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">roxigraph</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,12 +36,18 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.1" id="roxigraph-011">roxigraph 0.1.1<a class="anchor" aria-label="anchor" href="#roxigraph-011"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.2" id="roxigraph-012">roxigraph 0.1.2<a class="anchor" aria-label="anchor" href="#roxigraph-012"></a></h2>
+<ul><li>Downgraded <code>oxigraph</code> Rust dependency from 0.5.2 to 0.4.11 to comply with CRAN’s policy requiring packages to build on a rustc release at least two years old. The 0.5.x line declares MSRV 1.87, which CRAN’s reference Linux machines (Fedora 40, rustc 1.86.0) and the 1.77.2 policy ceiling do not satisfy. The 0.4.11 release declares MSRV 1.75 and provides equivalent in-memory and RocksDB-backed RDF/SPARQL functionality. See <a href="https://github.com/cboettig/roxigraph/issues/2" class="external-link uri">https://github.com/cboettig/roxigraph/issues/2</a> for the upgrade plan back to 0.5.x.</li>
+<li>Bumped declared MSRV in <code>DESCRIPTION</code> and <code>Cargo.toml</code> from 1.70 to 1.75 to accurately reflect the new dependency requirement.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.1" id="roxigraph-011">roxigraph 0.1.1<a class="anchor" aria-label="anchor" href="#roxigraph-011"></a></h2><p class="text-muted">CRAN release: 2026-02-12</p>
 <ul><li>Fixed Rust version compatibility by pinning <code>oxigraph</code> dependency to 0.5.2, ensuring support for Rust 1.70.0+ (resolving issues with newer <code>oxigraph</code> requiring bleeding-edge Rust).</li>
 <li>Added <code>libsnappy-dev</code> to SystemRequirements for RocksDB compression support.</li>
 <li>Fixed linker warnings on macOS ARM64 (M1/M2) builds by setting a default <code>MACOSX_DEPLOYMENT_TARGET</code>.</li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
